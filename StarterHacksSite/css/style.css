@@ -12,6 +12,9 @@ header {
 .container {
   width: 100%;
 }
+li {
+  list-style-type: none;
+}
 
 .branding {
   text-align: center;
@@ -21,9 +24,16 @@ header li {
   display: inline;
   padding: 0 20px 0 2px;
   background-color: black;
-  color: brown;
 }
 
 .highlight {
   color: purple;
+}
+
+footer {
+  text-align: center;
+  font-size: 10px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background-color: purple;
 }
