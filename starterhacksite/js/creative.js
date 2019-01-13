@@ -89,4 +89,23 @@
     }
   });
 
+  // Set the configuration for your app
+  // TODO: Replace with your project's config object
+  var config = {
+    apiKey: "AIzaSyDCxMSf8FRT-x0ZwftciFZmtyvdi0hFCTQ",
+    authDomain: "artkit-d6193.firebaseapp.com",
+    databaseURL: "https://artkit-d6193.firebaseio.com",
+    projectId: "artkit-d6193",
+    storageBucket: "artkit-d6193.appspot.com",
+    messagingSenderId: "912497536628"
+  };
+  firebase.initializeApp(config);
+
+  // Get a reference to the database service
+  var database = firebase.database();
+
+  function showimage() {
+    var storageRef = firebase.storage().ref();
+    var spaceRef = storageRef.child();
+  }
 })(jQuery); // End of use strict
