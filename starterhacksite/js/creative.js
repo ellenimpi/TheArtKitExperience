@@ -108,31 +108,32 @@
   var database = firebase.database();
   var storage = firebase.storage();
   var storageRef = storage.ref();
+  var numPicture = 4;
 
-  var imagesRef = storageRef.child('images');
-  var fileName = '2.jpg';
-  var spaceRef = imagesRef.child(fileName);
+  var imagesRef;
+  var fileName;
+  var spaceRef;
 
-  var pathReference = storage.ref(fileName);
-  var gsReference = storage.refFromURL('gs://bucket/images/2.jpg');
+  var pathReference;
+  var gsReference;
 
+  for (var current = 1; current <= numPicture; current++) {
+    
 
+    imagesRef = storageRef.child('images');
+    fileName = current + '.jpg';
+    spaceRef = imagesRef.child(fileName);
 
-  // download data via url
-  storageRef.child('images/2.jpg').getDownloadURL().then(function(url) {
-    /*var xhr = new XMLHttpRequest();
-    xhr.responseType = 'blob';
-    xhr.onload = function(event) {
-      var blob = xhr.response;
-    };
-    xhr.open('GET', url);
-    xhr.send();
-    */
+    pathReference = storage.ref(fileName);
+    gsReference = storage.refFromURL('gs://bucket/images/' + current + '.jpg');
 
-    // Or inserted into an <img> element:
-    var img = document.getElementById('myimg');
-    img.src = url;
-  }).catch(function(error) {
-    // Handle any errors
-  });
+    // download data via url
+    storageRef.child('images/' + current + '.jpg').getDownloadURL().then((function(current, url) {
+      console.log(current, url);
+      var img = document.getElementById('myimg' + current); //id is myimg
+      img.src = url;
+    }).bind(this, current)).catch(function(error) {
+      // Handle any errors
+    });
+  }
 })(jQuery); // End of use strict
