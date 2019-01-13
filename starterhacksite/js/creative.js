@@ -108,7 +108,7 @@
   var database = firebase.database();
   var storage = firebase.storage();
   var storageRef = storage.ref();
-  var numPicture = 4;
+  var numPicture = 18;
 
   var imagesRef;
   var fileName;
