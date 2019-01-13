@@ -103,9 +103,30 @@
 
   // Get a reference to the database service
   var database = firebase.database();
+  var storage = firebase.storage();
+  var storageRef = storage.ref();
 
-  function showimage() {
-    var storageRef = firebase.storage().ref();
-    var spaceRef = storageRef.child();
-  }
+  var imagesRef = storageRef.child('images');
+  var fileName = 'wave.jpg';
+  var spaceRef = imagesRef.child(fileName);
+
+  var pathReference = storage.ref(fileName);
+  var gsReference = storage.refFromURL('gs://bucket/images/wave.jpg');
+
+  // download data via url
+  storageRef.child('images/stars.jpg').getDownloadURL().then(function(url) {
+    var xhr = new XMLHttpRequest();
+    xhr.responseType = 'blob';
+    xhr.onload = function(event) {
+      var blob = xhr.response;
+    };
+    xhr.open('GET', url);
+    xhr.send();
+
+    // Or inserted into an <img> element:
+    var img = document.getElementById('myimg');
+    img.src = url;
+  }).catch(function(error) {
+    // Handle any errors
+  });
 })(jQuery); // End of use strict
