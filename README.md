@@ -1,2 +1,2 @@
 # TheArtKitExperience
-A website and android app made for StarterHacks. Includes Open CV
+A website and android app made for StarterHacks. Used openCV and Augmented Reality.
