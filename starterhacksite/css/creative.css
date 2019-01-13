@@ -47,6 +47,10 @@ h6 {
   background-color: #F05F40 !important;
 }
 
+.bg-secondary{
+  background-color: #ef440b;
+}
+
 .bg-dark {
   background-color: #212529 !important;
 }
