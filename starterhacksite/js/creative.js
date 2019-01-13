@@ -89,6 +89,9 @@
     }
   });
 
+  //$('#myimg').attr("src", "https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Liliumbulbiferumflowertop.jpg/220px-Liliumbulbiferumflowertop.jpg");
+
+  
   // Set the configuration for your app
   // TODO: Replace with your project's config object
   var config = {
@@ -107,21 +110,24 @@
   var storageRef = storage.ref();
 
   var imagesRef = storageRef.child('images');
-  var fileName = 'wave.jpg';
+  var fileName = '2.jpg';
   var spaceRef = imagesRef.child(fileName);
 
   var pathReference = storage.ref(fileName);
-  var gsReference = storage.refFromURL('gs://bucket/images/wave.jpg');
+  var gsReference = storage.refFromURL('gs://bucket/images/2.jpg');
+
+
 
   // download data via url
-  storageRef.child('images/stars.jpg').getDownloadURL().then(function(url) {
-    var xhr = new XMLHttpRequest();
+  storageRef.child('images/2.jpg').getDownloadURL().then(function(url) {
+    /*var xhr = new XMLHttpRequest();
     xhr.responseType = 'blob';
     xhr.onload = function(event) {
       var blob = xhr.response;
     };
     xhr.open('GET', url);
     xhr.send();
+    */
 
     // Or inserted into an <img> element:
     var img = document.getElementById('myimg');
