@@ -29,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     ImageView imageView;
     static final int REQUEST_IMAGE_CAPTURE = 1;
     String mCurrentPhotoPath;
+    ImageView work;
 
 
     @Override
@@ -37,16 +38,27 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // Example of a call to a native method
-
         Button click = findViewById(R.id.btnOpenCamera);
         imageView = findViewById(R.id.imageView);
-
+        Button display = findViewById(R.id.btnShowWork);
+        work = findViewById(R.id.imageView2);
+        work.setVisibility(View.INVISIBLE);
         click.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick (View v){
                 dispatchTakePictureIntent();
             }
         });
+        display.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick (View v){
+                showImage();
+            }
+        });
+    }
+
+    private void showImage(){
+        work.setVisibility(View.VISIBLE);
     }
 
     private void dispatchTakePictureIntent() {

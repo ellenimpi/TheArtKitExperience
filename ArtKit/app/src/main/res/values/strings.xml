@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">ArtKit</string>
     <string name="click_me">OPEN CAMERA</string>
+    <string name="work">WORK</string>
 </resources>
