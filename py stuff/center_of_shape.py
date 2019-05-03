@@ -4,16 +4,34 @@ import imutils
 import cv2
 import numpy as np
 
+import pyrebase
+
+config = {
+  "apiKey": "apiKey",
+  "authDomain": "artkit-d6193.firebaseapp.com",
+  "databaseURL": "https://artkit-d6193.firebaseio.com/",
+  "storageBucket": "artkit-d6193.appspot.com",
+  "serviceAccount": "credentials.json"
+}
+
+firebase = pyrebase.initialize_app(config)
+storage = firebase.storage()
+# as admin
+storage.child("images/from_mobile.jpg").download("downloaded.jpg")
+# as user
+# storage.child("images/example.jpg").put("example2.jpg", user['idToken'])
  
 # construct the argument parse and parse the arguments
-ap = argparse.ArgumentParser()
-ap.add_argument("-i", "--image", required=True,
-	help="path to the input image")
-args = vars(ap.parse_args())
+image = cv2.imread("downloaded.jpg")
+
+# ap = argparse.ArgumentParser()
+# ap.add_argument("-i", "--image", required=True,
+# 	help="path to the input image")
+# args = vars(ap.parse_args())
  
-# load the image, convert it to grayscale, blur it slightly,
-# and threshold it
-image = cv2.imread(args["image"])
+# # load the image, convert it to grayscale, blur it slightly,
+# # and threshold it
+# image = cv2.imread(args["image"])
 
 # def inverte(imagem, name):
 #     imagem = (255-imagem)
@@ -97,7 +115,8 @@ c = corner_list[0]
 d = corner_list[1]
 # print(d)
 #now in z formation
-image_to_show = cv2.imread("shapes_and_colors.jpg")
+storage.child("images/art_piece.jpg").download("art_piece.jpg")
+image_to_show = cv2.imread("art_piece.jpg")
 x_distance = int(((b[0] - a[0]) + (d[0] - c[0])) /2)
 y_distance = int(((c[1] - a[1]) + (d[1] - b[1])) /2)
 # r = x_distance / image.shape[1]
@@ -111,6 +130,8 @@ y_offset=a[1]
 #this is a loop, i think
 image[y_offset:y_offset+resized.shape[0], x_offset:x_offset+resized.shape[1]] = resized
 cv2.imshow("image", image)
+cv2.imwrite("to_mobile.jpg", image)
+storage.child("images/to_mobile.jpg").put("to_mobile.jpg")
 cv2.waitKey(0)
 
 
